@@ -1,0 +1,23 @@
+{
+  "name": "steamnewsbot",
+  "version": "1.0.0",
+  "description": "Steam News Bot. Does news stuff.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./index.js",
+    "dev": "nodemon ./index.js"
+  },
+  "author": "Clamor_",
+  "license": "ISC",
+  "dependencies": {
+    "@keyv/mysql": "^1.1.4",
+    "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0",
+    "keyv": "^4.0.3",
+    "redis": "^3.0.2",
+    "steam-totp": "^2.1.1",
+    "steam-user": "^4.19.0",
+    "twit": "^2.2.11"
+  }
+}
