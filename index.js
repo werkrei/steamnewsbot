@@ -27,7 +27,7 @@ const DATA_DIR = read_data_dir();
 
 
 
-//Discord integration start
+//Discord integration startt
 const PREFIX = "<";
 const Dickord = require('discord.js');
 const { findSourceMap } = require('module');
