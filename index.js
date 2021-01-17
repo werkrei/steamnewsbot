@@ -56,6 +56,7 @@ disclient.on('message', (message) => {
             .split(/\s+/);
         if (CMD_NAME === "guilds" && message.author.id === "162182497336164352") {
             message.channel.send("Currently in " + disclient.guilds.cache.size + " guilds");
+            message.channel.send(howmanychannels());
         } else if (CMD_NAME === "guilds" && message.author.id !== "162182497336164352") {
             message.channel.send("You do not have permission to use this command!");
         };
@@ -173,11 +174,14 @@ function sendToDiscord(link) {
         try{
             channel.send(link)
         } catch(error){
-            console.error(error);
             console.log("Error when trying to send message." + ch.guild.id)
             disclient.users.cache.get("162182497336164352").send("A server didn't have permissions set up properly. Server owner:"+message.guild.owner);
-            
+            console.error(error);
         };
     });
 
+};
+function howmanychannels(){
+    let channels = disclient.channels.cache.filter(ch => ch.name === "clamnews");
+    return channels.size;
 }
