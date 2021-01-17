@@ -1,5 +1,6 @@
 const SteamUser = require('steam-user');
 const SteamTotp = require('steam-totp');
+const config = require('./config');
 const { group } = require('console');
 const { userInfo } = require('os');
 const { stringify } = require('querystring');
@@ -61,6 +62,12 @@ disclient.on('message', (message) => {
         };
         if (CMD_NAME === "testtweet" && message.author.id === "162182497336164352") {
             sendToTwitter("www.google.com");
+        } else if (CMD_NAME === "guilds" && message.author.id !== "162182497336164352") {
+            message.channel.send("You do not have permission to use this command!");
+            return;
+        };
+        if (CMD_NAME === "testdiscord" && message.author.id === "162182497336164352") {
+            sendToDiscord("This is a test message. Ignore it please :)");
         } else if (CMD_NAME === "guilds" && message.author.id !== "162182497336164352") {
             message.channel.send("You do not have permission to use this command!");
             return;
@@ -163,6 +170,15 @@ function sendToTwitter(link) {
 };
 function sendToDiscord(link) {
     let channels = disclient.channels.cache.filter(ch => ch.name === "clamnews");
-    channels.forEach(channel => channel.send(link));
+    channels.forEach(channel => {
+        try{
+            channel.send(link)
+        } catch(error){
+            console.error(error);
+            console.log("Error when trying to send message." + ch.guild.id)
+            disclient.users.cache.get("162182497336164352").send("A server didn't have permissions set up properly. Server owner:"+message.guild.owner);
+            
+        };
+    });
 
 }
