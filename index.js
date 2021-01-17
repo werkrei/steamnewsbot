@@ -1,6 +1,5 @@
 const SteamUser = require('steam-user');
 const SteamTotp = require('steam-totp');
-const config = require('./config');
 const { group } = require('console');
 const { userInfo } = require('os');
 const { stringify } = require('querystring');
