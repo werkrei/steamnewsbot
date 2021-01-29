@@ -170,16 +170,7 @@ function sendToTwitter(link) {
 };
 function sendToDiscord(link) {
     let channels = disclient.channels.cache.filter(ch => ch.name === "clamnews");
-    channels.forEach(channel => {
-        try{
-            channel.send(link)
-        } catch(error){
-            console.log("Error when trying to send message." + ch.guild.id)
-            disclient.users.cache.get("162182497336164352").send("A server didn't have permissions set up properly. Server owner:"+message.guild.owner);
-            console.error(error);
-        };
-    });
-
+    channels.forEach(channel => channel.send(link).catch(console.error));
 };
 function howmanychannels(){
     let channels = disclient.channels.cache.filter(ch => ch.name === "clamnews");
